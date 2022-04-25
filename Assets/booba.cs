@@ -4,12 +4,11 @@ using UnityEngine;
 public class booba : MonoBehaviour
 {
     public GameObject Wall;
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
             Destroy(Wall);
-            Destroy(gameObject);
         }
     }
 }
