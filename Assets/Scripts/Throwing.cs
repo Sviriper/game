@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ThrowingTutorial : MonoBehaviour
+public class Throwing : MonoBehaviour
 {
     [Header("References")]
     public Transform cam;
@@ -38,13 +38,10 @@ public class ThrowingTutorial : MonoBehaviour
     {
         readyToThrow = false;
 
-        // instantiate object to throw
         GameObject projectile = Instantiate(objectToThrow, attackPoint.position, cam.rotation);
 
-        // get rigidbody component
         Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
 
-        // calculate direction
         Vector3 forceDirection = cam.transform.forward;
 
         RaycastHit hit;
@@ -54,14 +51,12 @@ public class ThrowingTutorial : MonoBehaviour
             forceDirection = (hit.point - attackPoint.position).normalized;
         }
 
-        // add force
         Vector3 forceToAdd = forceDirection * throwForce + transform.up * throwUpwardForce;
 
         projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
 
         totalThrows--;
 
-        // implement throwCooldown
         Invoke(nameof(ResetThrow), throwCooldown);
     }
 

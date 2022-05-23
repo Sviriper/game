@@ -4,15 +4,15 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
-public class MainMenu : MonoBehaviour
+public class MainMenuBack : MonoBehaviour
 {
     [SerializeField] Button Button;
     void Start()
     {
-        
+
     }
     public void OnButtonClick()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 }
