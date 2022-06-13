@@ -10,7 +10,7 @@ public class Inemy : MonoBehaviour
     NavMeshAgent agent;
     private void Start()
     {
-        target = GameObject.Find("player").transform;
+        target = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
     }
 
