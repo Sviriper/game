@@ -3,9 +3,9 @@
 
 public class MyAdvancedGUI : MonoBehaviour
 {
-    [SerializeField, Range(0f, 5f)]
+    [SerializeField, Range(0f, 100f)]
     [Tooltip("Значение находится в диапазоне от 0 до 5")]
-    private float HpSlider = 1.0f;
+    private float HpSlider = 100.0f;
     private float mySlider = 1.0f; // Положение пользовательского слайдера
     [Header("Custom color")]
     public Color myColor;         // Градиент цвета
@@ -16,17 +16,22 @@ public class MyAdvancedGUI : MonoBehaviour
 
     [SerializeField] public Sprite sprite;
 
+    public void SetHP(float value)
+    {
+        HpSlider = value;
+    }
+
     void OnGUI()
     {
-        mySlider = LabelSlider(new Rect(10, 10, 200, 20), mySlider, 5.0f, "My Slider"); // Отрисовка пользовательского слайдера
-        HpSlider = LabelSlider(new Rect(10, 90, 200, 20), HpSlider, 5.0f, "Hp Slider");
+        mySlider = LabelSlider(new Rect(10, 10, 200, 20), mySlider, 0.0f, 5.0f, "My Slider"); // Отрисовка пользовательского слайдера
+        HpSlider = LabelSlider(new Rect(10, 110, 200, 20), HpSlider, 0.0f, 100.0f, "Hp Slider");
 
         myColor = RGBSlider(new Rect(10, 30, 200, 20), myColor);  // Отрисовка пользовательского набора слайдеров для получения градиента цвета
         GO.material.color = myColor; // Покраска объекта
     }
 
     // Отрисовка пользовательского слайдера
-    float LabelSlider(Rect screenRect, float sliderValue, float sliderMaxValue, string labelText) // ДЗ добавить MinValue
+    float LabelSlider(Rect screenRect, float sliderValue, float sliderMinValue, float sliderMaxValue, string labelText) // ДЗ добавить MinValue
     {
         // создаём прямоугольник с координатами в пространстве и заданой шириной и высотой 
         Rect labelRect = new Rect(screenRect.x, screenRect.y, screenRect.width / 2, screenRect.height);
@@ -34,7 +39,7 @@ public class MyAdvancedGUI : MonoBehaviour
         GUI.Label(labelRect, labelText);   // создаём Label на экране
 
         Rect sliderRect = new Rect(screenRect.x + screenRect.width / 2, screenRect.y, screenRect.width / 2, screenRect.height); // Задаём размеры слайдера
-        sliderValue = GUI.HorizontalSlider(sliderRect, sliderValue, 0.0f, sliderMaxValue); // Вырисовываем слайдер и считываем его параметр
+        sliderValue = GUI.HorizontalSlider(sliderRect, sliderValue, sliderMinValue, sliderMaxValue); // Вырисовываем слайдер и считываем его параметр
         return sliderValue; // Возвращаем значение слайдера
     }
 
@@ -42,14 +47,18 @@ public class MyAdvancedGUI : MonoBehaviour
     Color RGBSlider(Rect screenRect, Color rgb)
     {
         // Используя пользовательский слайдер, создаём его
-        rgb.r = LabelSlider(screenRect, rgb.r, 1.0f, "Red");
+        rgb.r = LabelSlider(screenRect, rgb.r, 0.0f, 1.0f, "Red");
         
         // делаем промежуток
         screenRect.y += 20;
-        rgb.g = LabelSlider(screenRect, rgb.g, 1.0f, "Green");
+        rgb.g = LabelSlider(screenRect, rgb.g, 0.0f, 1.0f, "Green");
 
         screenRect.y += 20;
-        rgb.b = LabelSlider(screenRect, rgb.b, 1.0f, "Blue");
+        rgb.b = LabelSlider(screenRect, rgb.b, 0.0f, 1.0f, "Blue");
+
+        screenRect.y += 20;
+        rgb.a = LabelSlider(screenRect, rgb.a, 0.0f, 1.0f, "Alfa");
+
 
         return rgb; // возвращаем цвет
     } 

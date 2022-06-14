@@ -1523,7 +1523,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0.72526294
-        functionName: Drop
+        functionName: Kill
         data: 
         objectReferenceParameter: {fileID: 100000, guid: d05d496cb4f43c14e80630addd23652e, type: 3}
         floatParameter: 0

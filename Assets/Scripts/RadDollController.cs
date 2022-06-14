@@ -9,12 +9,12 @@ public class RadDollController : MonoBehaviour
     private Rigidbody[] _rbs;
     private Collider[] _colliders;
 
-    private Animation _animator;
+    private Animator _animator;
     private NavMeshAgent _agent;
     private AICharacterControl _control;
     void Start()
     {
-        _animator = GetComponent<Animation>();
+        _animator = GetComponent<Animator>();
         _agent = GetComponent<NavMeshAgent>();
         _control = GetComponent<AICharacterControl>();
 
