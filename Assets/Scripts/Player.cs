@@ -11,7 +11,7 @@ namespace Maze
         public override void Awake()
         {
             base.Awake();
-
+            
         }
 
 

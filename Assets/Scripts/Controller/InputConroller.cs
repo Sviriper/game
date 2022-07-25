@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Maze
 {
-    public class InputConroller
+    public class InputConroller : IExecute
     {
         private readonly Unit _player;
         
